@@ -27,7 +27,7 @@ def dashboard():
     page = int(request.args.get("page", 1))
 
     logs = get_all_logs(search, page)
-    
+
     return render_template(
         "dashboard.html",
         stats=stats,
@@ -49,4 +49,10 @@ def export():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    import os
+
+if __name__ == "__main__":
+    app.run(
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 5000))
+    )
