@@ -9,7 +9,8 @@ app = Flask(__name__)
 
 # Create database and table if they don't exist
 create_database()
-
+# Load sample logs into database
+load_logs_from_file("sample.log")
 # Folder for uploaded files
 UPLOAD_FOLDER = "uploads"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
