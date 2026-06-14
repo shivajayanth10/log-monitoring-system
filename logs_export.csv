@@ -1,6 +1,0 @@
-Timestamp,Level,Message
-2025-06-14 10:00:01,INFO,Application started
-2025-06-14 10:05:10,WARNING,Memory usage high
-2025-06-14 10:10:45,ERROR,Database connection failed
-2025-06-14 10:15:20,INFO,User login successful
-2025-06-14 10:20:35,ERROR,Timeout while fetching API
