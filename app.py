@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_file
+from flask import Flask, render_template, request, send_file, redirect, url_for
 import os
 
 from dashboard import get_statistics
@@ -12,18 +12,18 @@ UPLOAD_FOLDER = "uploads"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 
+# Home page → directly open dashboard
 @app.route("/")
 def home():
-    return render_template("index.html")
+    return redirect(url_for("dashboard"))
 
 
+# Dashboard
 @app.route("/dashboard")
 def dashboard():
-
     stats = get_statistics()
 
     search = request.args.get("search", "")
-
     page = int(request.args.get("page", 1))
 
     logs = get_all_logs(search, page)
@@ -31,15 +31,13 @@ def dashboard():
     return render_template(
         "dashboard.html",
         stats=stats,
-        logs=logs,
-        search=search,
-        page=page
+        logs=logs
     )
 
 
+# Export CSV
 @app.route("/export")
 def export():
-
     export_logs()
 
     return send_file(
@@ -47,9 +45,6 @@ def export():
         as_attachment=True
     )
 
-
-if __name__ == "__main__":
-    import os
 
 if __name__ == "__main__":
     app.run(
