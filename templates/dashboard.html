@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+<body>
+
+    <h1>Log Monitoring Dashboard</h1>
+
+    <div class="card">
+        <h2>Total Logs</h2>
+        <p>{{ stats.total_logs }}</p>
+    </div>
+
+    <div class="card info">
+        <h2>INFO Logs</h2>
+        <p>{{ stats.info_count }}</p>
+    </div>
+
+    <div class="card warning">
+        <h2>WARNING Logs</h2>
+        <p>{{ stats.warning_count }}</p>
+    </div>
+
+    <div class="card error">
+        <h2>ERROR Logs</h2>
+        <p>{{ stats.error_count }}</p>
+    </div>
+
+    <form action="/dashboard" method="GET">
+
+        <input
+            type="text"
+            name="search"
+            placeholder="Search by level or message"
+            value="{{ search }}"
+        >
+
+        <button type="submit">
+            Search
+        </button>
+
+    </form>
+
+    <br>
+
+    <form action="/export">
+
+        <button type="submit">
+            Export CSV
+        </button>
+
+    </form>
+
+    <h2>Log Distribution</h2>
+
+    <canvas
+        id="logChart"
+        width="400"
+        height="400"
+    ></canvas>
+
+    <br>
+
+    <h2>All Logs</h2>
+
+    <table>
+
+        <tr>
+            <th>Timestamp</th>
+            <th>Level</th>
+            <th>Message</th>
+        </tr>
+
+        {% for log in logs %}
+
+        <tr>
+            <td>{{ log[0] }}</td>
+            <td>{{ log[1] }}</td>
+            <td>{{ log[2] }}</td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+<br>
+
+<div>
+    {% if page > 1 %}
+        <a href="/dashboard?page={{ page - 1 }}&search={{ search }}">
+            Previous
+        </a>
+    {% endif %}
+
+    &nbsp;&nbsp;
+
+    <a href="/dashboard?page={{ page + 1 }}&search={{ search }}">
+        Next
+    </a>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+    const ctx = document.getElementById('logChart');
+
+    new Chart(ctx, {
+
+        type: 'pie',
+
+        data: {
+
+            labels: [
+                'INFO',
+                'WARNING',
+                'ERROR'
+            ],
+
+            datasets: [{
+
+                data: [
+                    Number("{{ stats.info_count }}"),
+                    Number("{{ stats.warning_count }}"),
+                    Number("{{ stats.error_count }}")
+                ],
+
+                backgroundColor: [
+                    'green',
+                    'orange',
+                    'red'
+                ]
+
+            }]
+
+        },
+
+        options: {
+
+            responsive: false
+
+        }
+
+    });
+
+</script>

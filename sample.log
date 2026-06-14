@@ -1,0 +1,20 @@
+2025-06-14 10:00:01 INFO Application started
+2025-06-14 10:05:10 WARNING Memory usage high
+2025-06-14 10:10:45 ERROR Database connection failed
+2025-06-14 10:15:20 INFO User login successful
+2025-06-14 10:20:35 ERROR Timeout while fetching API
+2025-06-14 10:25:12 INFO File uploaded successfully
+2025-06-14 10:30:17 WARNING Disk usage high
+2025-06-14 10:35:25 INFO User logged out
+2025-06-14 10:40:41 ERROR Authentication failed
+2025-06-14 10:45:55 INFO Email sent
+2025-06-14 10:50:02 WARNING CPU temperature high
+2025-06-14 10:55:13 INFO Backup completed
+2025-06-14 11:00:30 ERROR Network unavailable
+2025-06-14 11:05:22 INFO New account created
+2025-06-14 11:10:09 WARNING Low memory detected
+2025-06-14 11:15:45 INFO Password changed
+2025-06-14 11:20:33 ERROR Invalid API response
+2025-06-14 11:25:40 INFO Session started
+2025-06-14 11:30:28 WARNING High latency detected
+2025-06-14 11:35:50 INFO Application stopped

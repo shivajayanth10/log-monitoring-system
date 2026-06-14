@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Log Monitoring System</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h1>Log Monitoring System</h1>
+
+<form action="/upload" method="POST" enctype="multipart/form-data">
+
+    <input type="file" name="logfile">
+
+    <br><br>
+
+    <button type="submit">
+        Upload Log File
+    </button>
+
+</form>
+
+</body>
+</html>
