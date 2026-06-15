@@ -12,6 +12,7 @@ create_database()
 # Load sample logs into database
 load_logs_from_file("sample.log")
 # Folder for uploaded files
+print("Logs loaded successfully!")
 UPLOAD_FOLDER = "uploads"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
